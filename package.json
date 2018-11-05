@@ -1,0 +1,24 @@
+{
+  "name": "dopeoplesay-cli",
+  "version": "0.1.0",
+  "description": "Command-line interface for Do People Say it.",
+  "main": "cli.js",
+  "bin": {
+    "dps": "cli.js",
+    "dopeoplesay": "cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.19.0",
+    "jsdom": "^13.0.0",
+    "node-fetch": "^2.2.0",
+    "ora": "^3.0.0"
+  }
+}
