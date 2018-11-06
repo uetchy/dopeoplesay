@@ -24,15 +24,15 @@ async function fetchDOM(queryString) {
 }
 
 function parse(dom, trimLine = true) {
-  const documet = dom.window.document
+  const { document } = dom.window
 
   // Metadata
-  const matchedCount = documet.querySelector('.match-counter > span')
+  const matchedCount = document.querySelector('.match-counter > span')
     .textContent
 
   // Dictionary
   const definitions = Array.from(
-    documet.querySelectorAll('#dictionary > div > .term')
+    document.querySelectorAll('#dictionary > div > .term')
   ).map(item => {
     const label = item.querySelector('h6 > em').textContent
     const posElem = item.querySelector('h6 > .term-pos')
@@ -51,7 +51,7 @@ function parse(dom, trimLine = true) {
 
   // Collocations
   const collocations = Array.from(
-    documet.querySelectorAll('.hits > div > p.mb-4')
+    document.querySelectorAll('.hits > div > p.mb-4')
   ).map(item => {
     let matchedContent = item.querySelector('.match-content').innerHTML
     if (trimLine) {
