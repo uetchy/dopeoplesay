@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
 const fetch = require('node-fetch')
+const ora = require('ora')
 const chalk = require('chalk')
 const { JSDOM } = require('jsdom')
+
+const spinner = ora()
 
 function info(text) {
   console.log(chalk.yellow(text))
@@ -12,8 +15,8 @@ function head(text) {
   console.log(chalk.bold.blue(`[${text.toUpperCase()}]`))
 }
 
-function error(text) {
-  console.log(chalk.red('[!] ' + text))
+function hr() {
+  console.log()
 }
 
 function makeURL(queryString) {
@@ -78,7 +81,8 @@ async function main() {
   const query = process.argv.slice(2).join(' ')
   const trimLine = true
 
-  info(`Querying for '${query}' ...\n`)
+  spinner.text = `Querying for '${query}'`
+  spinner.start()
 
   let dom
   try {
@@ -95,6 +99,9 @@ async function main() {
   }
   const { definitions, collocations } = parse(dom, trimLine)
 
+  spinner.succeed()
+  hr()
+
   // Showing result
   if (definitions.length > 0) {
     head('Dictionary')
@@ -110,7 +117,7 @@ async function main() {
         console.log(chalk.italic('→', def.replace(/\n/g, '\n  ')))
       }
     }
-    console.log()
+    hr()
   }
 
   head('Collocations')
@@ -121,4 +128,4 @@ async function main() {
   info(`\nSee more at ${makeURL(query)}`)
 }
 
-main().catch(err => error(err))
+main().catch(err => spinner.fail(err))
