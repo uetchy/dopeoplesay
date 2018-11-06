@@ -16,14 +16,14 @@ function makeURL(queryString) {
   return 'https://dopeoplesay.com/q/' + encodeURIComponent(queryString)
 }
 
-async function searchForCollocation(queryString) {
+async function fetchDOM(queryString) {
   const url = makeURL(queryString)
   const res = await fetch(url)
   const html = await res.text()
   return new JSDOM(html)
 }
 
-async function parse(dom, trimLine = true) {
+function parse(dom, trimLine = true) {
   const documet = dom.window.document
 
   // Metadata
@@ -75,8 +75,8 @@ async function main() {
 
   info(`Querying for '${query}' ...\n`)
 
-  const dom = await searchForCollocation(query)
-  const { definitions, collocations } = await parse(dom, trimLine)
+  const dom = await fetchDOM(query)
+  const { definitions, collocations } = parse(dom, trimLine)
 
   // Showing result
   if (definitions.length > 0) {

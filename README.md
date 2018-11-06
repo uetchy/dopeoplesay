@@ -1,6 +1,6 @@
 # dopeoplesay-cli
 
-Commandline interface for [Do People Say it](https://dopeoplesay.com).
+A command-line interface for [Do People Say it](https://dopeoplesay.com).
 
 ## Usage
 
