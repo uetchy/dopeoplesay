@@ -12,6 +12,10 @@ function head(text) {
   console.log(chalk.bold.blue(`[${text.toUpperCase()}]`))
 }
 
+function error(text) {
+  console.log(chalk.red('[!] ' + text))
+}
+
 function makeURL(queryString) {
   return 'https://dopeoplesay.com/q/' + encodeURIComponent(queryString)
 }
@@ -26,9 +30,10 @@ async function fetchDOM(queryString) {
 function parse(dom, trimLine = true) {
   const { document } = dom.window
 
-  // Metadata
-  const matchedCount = document.querySelector('.match-counter > span')
-    .textContent
+  const matchedCounter = document.querySelector('.match-counter > span')
+  if (!matchedCounter) {
+    throw new Error('No search result found')
+  }
 
   // Dictionary
   const definitions = Array.from(
@@ -75,7 +80,19 @@ async function main() {
 
   info(`Querying for '${query}' ...\n`)
 
-  const dom = await fetchDOM(query)
+  let dom
+  try {
+    dom = await fetchDOM(query)
+  } catch (err) {
+    switch (err.code) {
+      case 'ENOTFOUND':
+        throw new Error(
+          'Your request has been failed maybe due to network lost. Try it again.'
+        )
+      default:
+        throw new Error(err.message)
+    }
+  }
   const { definitions, collocations } = parse(dom, trimLine)
 
   // Showing result
@@ -104,6 +121,4 @@ async function main() {
   info(`\nSee more at ${makeURL(query)}`)
 }
 
-main().catch(err => {
-  console.error(err)
-})
+main().catch(err => error(err))
