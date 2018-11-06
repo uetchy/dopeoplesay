@@ -2,25 +2,28 @@
 
 const fetch = require('node-fetch')
 const chalk = require('chalk')
-const jsdom = require('jsdom')
-const { JSDOM } = jsdom
-
-async function searchForCollocation(queryString) {
-  const url = 'https://dopeoplesay.com/q/' + encodeURIComponent(queryString)
-  const res = await fetch(url)
-  const html = await res.text()
-  return new JSDOM(html)
-}
+const { JSDOM } = require('jsdom')
 
 function info(text) {
   console.log(chalk.yellow(text))
 }
 
-async function main() {
-  const query = process.argv.slice(2).join(' ')
-  info(`Querying for '${query}' ...\n`)
+function head(text) {
+  console.log(chalk.bold.blue(`[${text.toUpperCase()}]`))
+}
 
-  const dom = await searchForCollocation(query)
+function makeURL(queryString) {
+  return 'https://dopeoplesay.com/q/' + encodeURIComponent(queryString)
+}
+
+async function searchForCollocation(queryString) {
+  const url = makeURL(queryString)
+  const res = await fetch(url)
+  const html = await res.text()
+  return new JSDOM(html)
+}
+
+async function parse(dom, trimLine = true) {
   const documet = dom.window.document
 
   // Metadata
@@ -28,7 +31,7 @@ async function main() {
     .textContent
 
   // Dictionary
-  const terms = Array.from(
+  const definitions = Array.from(
     documet.querySelectorAll('#dictionary > div > .term')
   ).map(item => {
     const label = item.querySelector('h6 > em').textContent
@@ -46,41 +49,59 @@ async function main() {
     }
   })
 
-  // Mapping all collocation
+  // Collocations
   const collocations = Array.from(
     documet.querySelectorAll('.hits > div > p.mb-4')
   ).map(item => {
-    const matchedContent = item.querySelector('.match-content')
-    const highlight = matchedContent.innerHTML.replace(
+    let matchedContent = item.querySelector('.match-content').innerHTML
+    if (trimLine) {
+      matchedContent = matchedContent.match(
+        /((?:[^\s]+[\,\.]?\s?){0,4}<.+>(?:[\,\.]?\s?[^\s]+){0,4})/m
+      )[0]
+    }
+    const highlightedText = matchedContent.replace(
       /<em.+?>(.+?)<\/em>/g,
       chalk.yellow.bold('$1')
     )
-    return highlight
+    return highlightedText
   })
 
+  return { definitions, collocations }
+}
+
+async function main() {
+  const query = process.argv.slice(2).join(' ')
+  const trimLine = true
+
+  info(`Querying for '${query}' ...\n`)
+
+  const dom = await searchForCollocation(query)
+  const { definitions, collocations } = await parse(dom, trimLine)
+
   // Showing result
-  // info(`Found ${matchedCount} records for '${query}'`)
-  // console.log('\n')
-  for (const term of terms) {
-    console.log(
-      chalk.red(
-        `${chalk.underline(term.label)}${
-          term.pos ? ' (' + term.pos + ')' : ''
-        } from ${chalk.italic(term.source)}`
+  if (definitions.length > 0) {
+    head('Dictionary')
+    for (const term of definitions) {
+      console.log(
+        chalk.red(
+          `${chalk.underline(term.label)}${
+            term.pos ? ' (' + term.pos + ')' : ''
+          } from ${term.source}`
+        )
       )
-    )
-    for (const def of term.definitions) {
-      console.log('•', def.replace(/\n/g, '\n  '))
+      for (const def of term.definitions) {
+        console.log(chalk.italic('→', def.replace(/\n/g, '\n  ')))
+      }
     }
     console.log()
   }
 
-  console.log()
-  for (const col of collocations) {
-    console.log(col)
-  }
+  head('Collocations')
+  collocations.forEach((item, index) => {
+    console.log(`${chalk.green(String(index + 1).padStart(2))} ${item}`)
+  })
 
-  return 0
+  info(`\nSee more at ${makeURL(query)}`)
 }
 
 main().catch(err => {
