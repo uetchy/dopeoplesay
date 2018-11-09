@@ -114,7 +114,7 @@ async function main() {
         )
       )
       for (const def of term.definitions) {
-        console.log(chalk.italic('→', def.replace(/\n/g, '\n  ')))
+        console.log(chalk.italic(' →', def.replace(/\n/g, '\n  ')))
       }
     }
     hr()
@@ -122,7 +122,7 @@ async function main() {
 
   head('Collocations')
   collocations.forEach((item, index) => {
-    console.log(`${chalk.green(String(index + 1).padStart(2))} ${item}`)
+    console.log(`${chalk.gray(String(index + 1).padStart(2))} ${item}`)
   })
 
   info(`\nSee more at ${makeURL(query)}`)
