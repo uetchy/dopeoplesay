@@ -8,7 +8,7 @@
     "build": "babel src -d lib --delete-dir-on-start",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dev": "babel src -d lib -w",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "dependencies": {
     "chalk": "^2.4.1",
