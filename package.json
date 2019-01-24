@@ -6,8 +6,9 @@
   "main": "lib/cli.js",
   "scripts": {
     "build": "babel src -d lib --delete-dir-on-start",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dev": "babel src -d lib -w",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -21,6 +22,7 @@
     "@babel/preset-env": "^7.3.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "coveralls": "^3.0.2",
     "jest": "^23.6.0",
     "nock": "^10.0.6",
     "test-console": "^1.1.0"
