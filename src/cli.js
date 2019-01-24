@@ -10,6 +10,11 @@ async function main() {
   const query = process.argv.slice(2).join(' ')
   const trimLine = true
 
+  if (!query) {
+    info('No query provided')
+    process.exit()
+  }
+
   spinner.text = `Querying for '${query}'`
   spinner.start()
 
