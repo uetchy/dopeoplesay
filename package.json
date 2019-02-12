@@ -5,10 +5,10 @@
   "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
   "main": "lib/cli.js",
   "scripts": {
-    "postinstall": "yarn build",
     "build": "babel src -d lib --delete-dir-on-start",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dev": "babel src -d lib -w",
+    "postinstall": "yarn build",
     "test": "jest"
   },
   "dependencies": {
