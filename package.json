@@ -8,8 +8,7 @@
     "build": "babel src -d lib --delete-dir-on-start",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dev": "babel src -d lib -w",
-    "postinstall": "yarn build",
-    "test": "jest"
+    "test": "yarn build && jest"
   },
   "dependencies": {
     "chalk": "^2.4.1",
