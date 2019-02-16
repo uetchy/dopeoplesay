@@ -2,21 +2,23 @@
 
 import ora from 'ora'
 import { red, underline, italic, gray } from 'chalk'
-import { fetchDOM, parse, hr, head, info, makeURL } from './lib'
+import { fetchDOM, parse, hr, head, info, makeURL, consoleJSON } from './lib'
 
 const spinner = ora()
 
-async function main() {
-  const query = process.argv.slice(2).join(' ')
-  const trimLine = true
+async function main(argv) {
+  const query = argv._.join(' ')
+  const jsonOutputMode = argv.json
+  const trimLineMode = true
 
   if (!query) {
-    info('No query provided')
-    process.exit()
+    throw new Error('No query provided')
   }
 
-  spinner.text = `Querying for '${query}'`
-  spinner.start()
+  if (!jsonOutputMode) {
+    spinner.text = `Querying for '${query}'`
+    spinner.start()
+  }
 
   let dom
   try {
@@ -31,7 +33,14 @@ async function main() {
         throw new Error(err.message)
     }
   }
-  const { definitions, collocations } = parse(dom, trimLine)
+  const { definitions, collocations } = parse(dom, {
+    trimLine: trimLineMode,
+    color: !jsonOutputMode,
+  })
+
+  if (jsonOutputMode) {
+    return consoleJSON({ definitions, collocations })
+  }
 
   spinner.succeed()
   hr()
@@ -62,4 +71,10 @@ async function main() {
   info(`\nSee more at ${makeURL(query)}`)
 }
 
-main().catch(err => spinner.fail(err))
+const argv = require('minimist')(process.argv.slice(2), {
+  boolean: ['json'],
+  alias: { j: 'json' },
+})
+main(argv).catch((err) =>
+  argv.json ? consoleJSON({ error: err.message }) : spinner.fail(err)
+)

@@ -24,6 +24,6 @@ test('fetchDOM', async () => {
 
 test('parse', async () => {
   const dom = await lib.fetchDOM('test')
-  const result = await lib.parse(dom)
+  const result = await lib.parse(dom, { trimLine: true, color: true })
   expect(Object.keys(result)).toEqual(['definitions', 'collocations'])
 })
