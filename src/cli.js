@@ -12,7 +12,7 @@ async function main(argv) {
   const trimLineMode = true
 
   if (!query) {
-    throw new Error('No query provided')
+    throw new Error('No query provided. Try $ dps [--json] <query>')
   }
 
   if (!jsonOutputMode) {
