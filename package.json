@@ -1,7 +1,7 @@
 {
   "name": "dopeoplesay-cli",
   "description": "Command-line interface for Do People Say it.",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
   "main": "lib/lib.js",
   "scripts": {
