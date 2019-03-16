@@ -61,3 +61,27 @@ This can be combined with various pipeline or workflows.
 ```shell
 dps --json "epic fail" | jq ".collocations[0]" | pbcopy
 ```
+
+### API
+
+To gain access to Do People Say API, install `dopeoplesay-cli` locally.
+
+```
+yarn add dopeoplesay-cli
+npm install dopeoplesay-cli
+```
+
+then:
+
+```js
+const { fetchDOM, parse } = require('dopeoplesay-cli')
+
+async function main() {
+  const dom = await fetchDOM(query)
+  const { definitions, collocations } = parse(dom, {
+    trimLine: true,
+    color: false,
+  })
+  console.log(collocations)
+}
+```

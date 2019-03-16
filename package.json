@@ -3,7 +3,7 @@
   "description": "Command-line interface for Do People Say it.",
   "version": "2.0.1",
   "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
-  "main": "lib/cli.js",
+  "main": "lib/lib.js",
   "scripts": {
     "build": "babel src -d lib --delete-dir-on-start",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
@@ -12,19 +12,19 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "jsdom": "^13.2.0",
+    "jsdom": "^14.0.0",
     "minimist": "^1.2.0",
     "node-fetch": "^2.2.0",
-    "ora": "^3.1.0"
+    "ora": "^3.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.1.0",
-    "coveralls": "^3.0.2",
-    "jest": "^24.1.0",
+    "babel-jest": "^24.5.0",
+    "coveralls": "^3.0.3",
+    "jest": "^24.5.0",
     "nock": "^10.0.6",
     "test-console": "^1.1.0"
   },
