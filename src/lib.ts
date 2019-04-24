@@ -1,6 +1,7 @@
-import fetch from 'node-fetch'
+// tslint:disable: no-console
 import chalk from 'chalk'
 import { JSDOM } from 'jsdom'
+import fetch from 'node-fetch'
 
 export function consoleJSON(obj: any) {
   console.log(JSON.stringify(obj, null, 2))
@@ -42,14 +43,15 @@ export function parse(dom: JSDOM, { trimLine = true, color = true } = {}) {
     const label = item.querySelector('h6 > em')!.textContent
     const posElem = item.querySelector('h6 > .term-pos')
     const pos = posElem ? posElem.textContent!.replace(/[\(\)]/g, '') : ''
+    // tslint:disable-next-line: no-shadowed-variable
     const definitions = Array.from(item.querySelectorAll('li')).map(
       (def) => def.textContent
     )
     const source = item.querySelector('small > i > a')!.textContent
     return {
+      definitions,
       label,
       pos,
-      definitions,
       source,
     }
   })

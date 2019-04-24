@@ -13,10 +13,10 @@ interface IArgs {
   _: string[]
 }
 
-async function main(argv: IArgs) {
-  const query = argv._.join(' ')
-  const jsonOutputMode = argv.json
-  const trimLineMode = argv.trim
+async function main(args: IArgs) {
+  const query = args._.join(' ')
+  const jsonOutputMode = args.json
+  const trimLineMode = args.trim
 
   if (!query) {
     throw new Error('No query provided. Try $ dps [--json] <query>')
@@ -41,8 +41,8 @@ async function main(argv: IArgs) {
     }
   }
   const { definitions, collocations } = parse(dom, {
-    trimLine: trimLineMode,
     color: !jsonOutputMode,
+    trimLine: trimLineMode,
   })
 
   if (jsonOutputMode) {
@@ -56,6 +56,7 @@ async function main(argv: IArgs) {
   if (definitions.length > 0) {
     head('Dictionary')
     for (const term of definitions) {
+      // tslint:disable-next-line: no-console
       console.log(
         chalk.red(
           `${chalk.underline(term.label!)}${
@@ -64,6 +65,7 @@ async function main(argv: IArgs) {
         )
       )
       for (const def of term.definitions) {
+        // tslint:disable-next-line: no-console
         console.log(chalk.italic(' →', def!.replace(/\n/g, '\n  ')))
       }
     }
@@ -72,6 +74,7 @@ async function main(argv: IArgs) {
 
   head('Collocations')
   collocations.forEach((item, index) => {
+    // tslint:disable-next-line: no-console
     console.log(`${chalk.gray(String(index + 1).padStart(2))} ${item}`)
   })
 

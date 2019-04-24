@@ -1,6 +1,5 @@
-// import { stdout } from 'test-console'
-import nockHelper from './helpers/nock'
 import * as lib from '../lib'
+import nockHelper from './helpers/nock'
 
 let cleaner: () => void
 
