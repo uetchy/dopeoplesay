@@ -1,15 +1,22 @@
 #!/usr/bin/env node
 
+import chalk from 'chalk'
 import ora from 'ora'
-import { red, underline, italic, gray } from 'chalk'
-import { fetchDOM, parse, hr, head, info, makeURL, consoleJSON } from './lib'
+import yargs from 'yargs'
+import { consoleJSON, fetchDOM, head, hr, info, makeURL, parse } from './lib'
 
-const spinner = ora()
+interface IArgs {
+  [x: string]: any
+  $0: string
+  json: boolean
+  trim: boolean
+  _: string[]
+}
 
-async function main(argv) {
+async function main(argv: IArgs) {
   const query = argv._.join(' ')
   const jsonOutputMode = argv.json
-  const trimLineMode = true
+  const trimLineMode = argv.trim
 
   if (!query) {
     throw new Error('No query provided. Try $ dps [--json] <query>')
@@ -50,14 +57,14 @@ async function main(argv) {
     head('Dictionary')
     for (const term of definitions) {
       console.log(
-        red(
-          `${underline(term.label)}${
+        chalk.red(
+          `${chalk.underline(term.label!)}${
             term.pos ? ' (' + term.pos + ')' : ''
           } from ${term.source}`
         )
       )
       for (const def of term.definitions) {
-        console.log(italic(' →', def.replace(/\n/g, '\n  ')))
+        console.log(chalk.italic(' →', def!.replace(/\n/g, '\n  ')))
       }
     }
     hr()
@@ -65,16 +72,27 @@ async function main(argv) {
 
   head('Collocations')
   collocations.forEach((item, index) => {
-    console.log(`${gray(String(index + 1).padStart(2))} ${item}`)
+    console.log(`${chalk.gray(String(index + 1).padStart(2))} ${item}`)
   })
 
   info(`\nSee more at ${makeURL(query)}`)
 }
 
-const argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['json'],
-  alias: { j: 'json' },
-})
-main(argv).catch((err) =>
-  argv.json ? consoleJSON({ error: err.message }) : spinner.fail(err)
-)
+function errorHandler(error: string, jsonOutput: boolean) {
+  if (jsonOutput) {
+    consoleJSON({ error })
+  } else {
+    spinner.fail(error)
+  }
+}
+
+const spinner = ora()
+const argv: IArgs = yargs
+  .option('$0', { required: true, demandOption: true })
+  .option('json', { alias: 'j', boolean: true, default: false })
+  .option('trim', { alias: 't', boolean: true, default: true })
+  .demandOption(['$0'])
+  .help()
+  .fail((msg, err) => errorHandler(msg || err.message, argv.json)).argv
+
+main(argv).catch((err) => errorHandler(err.message, argv.json))

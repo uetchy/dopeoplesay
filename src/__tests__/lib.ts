@@ -1,8 +1,8 @@
 // import { stdout } from 'test-console'
 import nockHelper from './helpers/nock'
-import * as lib from '../src/lib'
+import * as lib from '../lib'
 
-let cleaner
+let cleaner: () => void
 
 beforeEach(() => {
   cleaner = nockHelper()

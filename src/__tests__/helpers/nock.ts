@@ -1,7 +1,7 @@
 import nock from 'nock'
 import { resolve } from 'path'
 
-export default function declareMockScope() {
+export default function declareMockScope(): () => void {
   nock.disableNetConnect()
 
   const scope = nock('https://dopeoplesay.com')
