@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as lib from '../lib'
 import nockHelper from './helpers/nock'
 

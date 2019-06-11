@@ -5,15 +5,17 @@ import ora from 'ora'
 import yargs from 'yargs'
 import { consoleJSON, fetchDOM, head, hr, info, makeURL, parse } from './lib'
 
-interface IArgs {
-  [x: string]: any
+const spinner = ora()
+
+interface Args {
+  [key: string]: unknown
   $0: string
   json: boolean
   trim: boolean
   _: string[]
 }
 
-async function main(args: IArgs) {
+async function main(args: Args): Promise<void> {
   const query = args._.join(' ')
   const jsonOutputMode = args.json
   const trimLineMode = args.trim
@@ -56,7 +58,7 @@ async function main(args: IArgs) {
   if (definitions.length > 0) {
     head('Dictionary')
     for (const term of definitions) {
-      // tslint:disable-next-line: no-console
+      // eslint-disable-next-line no-console
       console.log(
         chalk.red(
           `${chalk.underline(term.label!)}${
@@ -65,7 +67,7 @@ async function main(args: IArgs) {
         )
       )
       for (const def of term.definitions) {
-        // tslint:disable-next-line: no-console
+        // eslint-disable-next-line no-console
         console.log(chalk.italic(' →', def!.replace(/\n/g, '\n  ')))
       }
     }
@@ -73,15 +75,17 @@ async function main(args: IArgs) {
   }
 
   head('Collocations')
-  collocations.forEach((item, index) => {
-    // tslint:disable-next-line: no-console
-    console.log(`${chalk.gray(String(index + 1).padStart(2))} ${item}`)
-  })
+  collocations.forEach(
+    (item, index): void => {
+      // eslint-disable-next-line no-console
+      console.log(`${chalk.gray(String(index + 1).padStart(2))} ${item}`)
+    }
+  )
 
   info(`\nSee more at ${makeURL(query)}`)
 }
 
-function errorHandler(error: string, jsonOutput: boolean) {
+function errorHandler(error: string, jsonOutput: boolean): void {
   if (jsonOutput) {
     consoleJSON({ error })
   } else {
@@ -89,13 +93,12 @@ function errorHandler(error: string, jsonOutput: boolean) {
   }
 }
 
-const spinner = ora()
-const argv: IArgs = yargs
+const argv: Args = yargs
   .option('$0', { required: true, demandOption: true })
   .option('json', { alias: 'j', boolean: true, default: false })
   .option('trim', { alias: 't', boolean: true, default: true })
   .demandOption(['$0'])
   .help()
-  .fail((msg, err) => errorHandler(msg || err.message, argv.json)).argv
+  .fail((msg, err): void => errorHandler(msg || err.message, argv.json)).argv
 
-main(argv).catch((err) => errorHandler(err.message, argv.json))
+main(argv).catch((err): void => errorHandler(err.message, argv.json))
