@@ -11,7 +11,7 @@ A command-line interface for [Do People Say it](https://dopeoplesay.com).
 npm install -g dopeoplesay-cli
 ```
 
-then you can provoke the command either by `dopeoplesay`, `dpsi` or `dps`:
+You can call the CLI either from `dopeoplesay`, `dpsi` or `dps`:
 
 ```shell
 dopeoplesay <keyword>
@@ -32,7 +32,7 @@ dps --json epic fail
 dps -j epic fail
 ```
 
-You'll get result like this:
+You'll get a result like this:
 
 ```jsonc
 {
@@ -56,7 +56,7 @@ You'll get result like this:
 }
 ```
 
-This can be combined with various pipeline or workflows.
+This can be combined with various pipelines and workflows.
 
 ```shell
 dps --json "epic fail" | jq ".collocations[0]" | pbcopy
