@@ -1,10 +1,11 @@
 {
   "name": "dopeoplesay",
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "lerna run build",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "dev": "yarn workspaces run dev",
-    "test": "yarn workspaces run test"
+    "dev": "lerna run dev",
+    "ship": "lerna publish",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
