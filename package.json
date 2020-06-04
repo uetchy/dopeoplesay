@@ -1,79 +1,28 @@
 {
-  "name": "dopeoplesay-cli",
-  "description": "Command-line interface for Do People Say it.",
-  "version": "2.1.0",
-  "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
-  "main": "lib/lib.js",
+  "name": "dopeoplesay",
   "scripts": {
-    "build": "shx rm -rf lib && tsc",
+    "build": "yarn workspaces run build",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "dev": "tsc -w",
-    "test": "jest"
-  },
-  "dependencies": {
-    "chalk": "^3.0.0",
-    "jsdom": "^16.2.1",
-    "node-fetch": "^2.6.0",
-    "ora": "^4.0.3",
-    "yargs": "^15.3.1"
+    "dev": "yarn workspaces run dev",
+    "test": "yarn workspaces run test"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@types/jest": "^25.1.4",
-    "@types/jsdom": "^16.1.0",
-    "@types/node": "^13.9.2",
-    "@types/node-fetch": "^2.5.5",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
-    "@typescript-eslint/parser": "^2.24.0",
-    "coveralls": "^3.0.9",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-jest": "^23.8.2",
-    "husky": "^4.2.3",
-    "jest": "^25.1.0",
-    "lint-staged": "^10.0.8",
-    "nock": "^12.0.3",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "shx": "^0.3.2",
-    "test-console": "^1.1.0",
-    "ts-jest": "^25.2.1",
-    "ts-node": "^8.7.0",
-    "typescript": "^3.8.3"
+    "husky": "^4.2.5",
+    "lerna": "^3.22.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
   },
-  "bin": {
-    "dps": "lib/cli.js",
-    "dpsi": "lib/cli.js",
-    "dopeoplesay": "lib/cli.js"
-  },
-  "bugs": {
-    "url": "https://github.com/uetchy/dopeoplesay-cli/issues"
-  },
-  "files": [
-    "lib/*.js"
-  ],
-  "homepage": "https://github.com/uetchy/dopeoplesay-cli",
   "husky": {
     "hooks": {
       "pre-push": "yarn test",
-      "pre-commit": "lint-staged && pretty-quick --staged",
+      "pre-commit": "pretty-quick --staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "keywords": [
-    "dopeoplesay",
-    "dpsi"
-  ],
-  "license": "MIT",
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "repository": {
-    "url": "https://github.com/uetchy/dopeoplesay-cli.git",
-    "type": "git"
-  }
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }

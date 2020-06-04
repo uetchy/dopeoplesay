@@ -1,0 +1,47 @@
+{
+  "name": "dopeoplesay-cli",
+  "description": "Command-line interface for Do People Say it.",
+  "version": "2.1.0",
+  "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
+  "scripts": {
+    "build": "shx rm -rf lib && tsc",
+    "dev": "tsc -w",
+    "test": "echo no test"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "dopeoplesay": "^1.0.0",
+    "ora": "^4.0.3",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "jest": "^25.1.0",
+    "shx": "^0.3.2",
+    "test-console": "^1.1.0",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3"
+  },
+  "files": [
+    "lib/*.js"
+  ],
+  "repository": {
+    "url": "https://github.com/uetchy/dopeoplesay.git",
+    "type": "git"
+  },
+  "license": "MIT",
+  "bin": {
+    "dps": "lib/cli.js",
+    "dpsi": "lib/cli.js",
+    "dopeoplesay": "lib/cli.js"
+  },
+  "bugs": {
+    "url": "https://github.com/uetchy/dopeoplesay/issues"
+  },
+  "homepage": "https://github.com/uetchy/dopeoplesay",
+  "keywords": [
+    "dopeoplesay",
+    "dpsi"
+  ]
+}
