@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "path": "packages/dopeoplesay-cli"
+    },
+    {
+      "path": "packages/dopeoplesay"
+    }
+  ],
+  "settings": {
+    "jest.disabledWorkspaceFolders": ["root", "dopeoplesay-cli"]
+  }
+}
