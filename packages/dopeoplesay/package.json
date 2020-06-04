@@ -1,7 +1,7 @@
 {
   "name": "dopeoplesay",
   "description": "Node.js wrapper for dopeoplesay.com",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
   "scripts": {
     "build": "shx rm -rf lib && tsc",

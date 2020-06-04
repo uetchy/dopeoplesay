@@ -1,7 +1,7 @@
 {
   "name": "dopeoplesay-cli",
   "description": "Command-line interface for Do People Say it.",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
   "scripts": {
     "build": "shx rm -rf lib && tsc && shx chmod +x lib/cli.js",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "chalk": "^3.0.0",
-    "dopeoplesay": "^1.0.0",
+    "dopeoplesay": "^3.0.0",
     "ora": "^4.0.3",
     "yargs": "^15.3.1"
   },
