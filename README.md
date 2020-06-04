@@ -1,9 +1,9 @@
-# dopeoplesay-cli
+# dopeoplesay
 
-[![Build Status](https://travis-ci.org/uetchy/dopeoplesay-cli.svg?branch=master)](https://travis-ci.org/uetchy/dopeoplesay-cli)
-[![Coverage Status](https://coveralls.io/repos/github/uetchy/dopeoplesay-cli/badge.svg?branch=master)](https://coveralls.io/github/uetchy/dopeoplesay-cli?branch=master)
+[![Build Status](https://travis-ci.com/uetchy/dopeoplesay.svg?branch=master)](https://travis-ci.com/uetchy/dopeoplesay)
+[![Coverage Status](https://coveralls.io/repos/github/uetchy/dopeoplesay/badge.svg?branch=master)](https://coveralls.io/github/uetchy/dopeoplesay?branch=master)
 
-A command-line interface for [Do People Say it](https://dopeoplesay.com).
+Node.js bindings and a command-line app for [Do People Say it](https://dopeoplesay.com).
 
 ## Usage
 
@@ -74,14 +74,14 @@ npm install dopeoplesay-cli
 then:
 
 ```js
-const { fetchDOM, parse } = require('dopeoplesay-cli')
+const {fetchDOM, parse} = require('dopeoplesay-cli');
 
 async function main() {
-  const dom = await fetchDOM(query)
-  const { definitions, collocations } = parse(dom, {
+  const dom = await fetchDOM(query);
+  const {definitions, collocations} = parse(dom, {
     trimLine: true,
     color: false,
-  })
-  console.log(collocations)
+  });
+  console.log(collocations);
 }
 ```
