@@ -4,22 +4,19 @@ Node.js wrapper for [Do People Say it](https://dopeoplesay.com).
 
 ## Usage
 
-To gain access to Do People Say API, install `dopeoplesay-cli` locally.
-
 ```
-yarn add dopeoplesay-cli
-npm install dopeoplesay-cli
+yarn add dopeoplesay
+npm install dopeoplesay
 ```
 
 then:
 
 ```js
-const {fetchDOM, parse} = require('dopeoplesay-cli');
+const {search} = require('dopeoplesay');
 
 async function main() {
-  const dom = await fetchDOM(query);
-  const {definitions, collocations} = parse(dom, {
-    trimLine: true,
+  const {definitions, collocations} = await search(dom, {
+    trim: true,
     color: false,
   });
   console.log(collocations);
