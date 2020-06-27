@@ -5,8 +5,13 @@
 
 Node.js bindings and a command-line app for [Do People Say it](https://dopeoplesay.com).
 
-## Packages
+<!-- START pkgtoc, keep to allow update -->
 
-### [`dopeoplesay`](https://github.com/uetchy/dopeoplesay/tree/master/packages/dopeoplesay)
+**Packages**
 
-### [`dopeoplesay-cli`](https://github.com/uetchy/dopeoplesay/tree/master/packages/dopeoplesay-cli)
+| Version                                                                                                          | Package                                                                                            |
+| :--------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| [![dopeoplesay npm badge)](https://img.shields.io/npm/v/dopeoplesay.svg)](https://npmjs.com/package/dopeoplesay) | **[dopeoplesay](packages/dopeoplesay/)**<br />Node.js wrapper for dopeoplesay.com                  |
+| ![dopeoplesay-cli npm badge)](https://img.shields.io/npm/v/dopeoplesay-cli.svg)                                  | **[dopeoplesay-cli](packages/dopeoplesay-cli/)**<br />Command-line interface for Do People Say it. |
+
+<!-- END pkgtoc, keep to allow update -->

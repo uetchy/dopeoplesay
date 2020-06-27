@@ -1,5 +1,10 @@
 # dopeoplesay
 
+[![dopeoplesay npm badge)](https://img.shields.io/npm/v/dopeoplesay.svg)](https://npmjs.com/package/dopeoplesay)
+[![npm: total downloads](https://badgen.net/npm/dt/dopeoplesay)](https://npmjs.com/package/dopeoplesay)
+[![Build Status](https://travis-ci.org/uetchy/dopeoplesay.svg?branch=master)](https://travis-ci.org/uetchy/dopeoplesay)
+[![Coverage Status](https://coveralls.io/repos/github/uetchy/dopeoplesay/badge.svg?branch=master)](https://coveralls.io/github/uetchy/dopeoplesay?branch=master)
+
 Node.js wrapper for [Do People Say it](https://dopeoplesay.com).
 
 ## Usage

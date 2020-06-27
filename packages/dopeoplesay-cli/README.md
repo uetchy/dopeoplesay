@@ -1,7 +1,7 @@
 # dopeoplesay-cli
 
-[![Build Status](https://travis-ci.org/uetchy/dopeoplesay-cli.svg?branch=master)](https://travis-ci.org/uetchy/dopeoplesay-cli)
-[![Coverage Status](https://coveralls.io/repos/github/uetchy/dopeoplesay-cli/badge.svg?branch=master)](https://coveralls.io/github/uetchy/dopeoplesay-cli?branch=master)
+[![dopeoplesay npm badge)](https://img.shields.io/npm/v/dopeoplesay-cli.svg)](https://npmjs.com/package/dopeoplesay-cli)
+[![npm: total downloads](https://badgen.net/npm/dt/dopeoplesay-cli)](https://npmjs.com/package/dopeoplesay-cli)
 
 A command-line interface for [Do People Say it](https://dopeoplesay.com).
 
