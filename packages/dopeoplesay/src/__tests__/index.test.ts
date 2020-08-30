@@ -1,7 +1,7 @@
 import rewire from 'rewire';
 import nockHelper from './helpers/nock';
 
-const module = rewire('../../lib');
+const lib = rewire('../../lib');
 
 let cleaner: () => void;
 
@@ -14,18 +14,18 @@ afterEach(() => {
 });
 
 test('makeURL', () => {
-  const url = module.__get__('makeURL')('a b');
+  const url = lib.__get__('makeURL')('a b');
   expect(url).toBe('https://dopeoplesay.com/q/a%20b');
 });
 
 test('fetchDOM', async () => {
-  const dom = await module.__get__('fetchDOM')('test');
+  const dom = await lib.__get__('fetchDOM')('test');
   expect(dom).toHaveProperty('window');
 });
 
 test('parse', async () => {
-  const dom = await module.__get__('fetchDOM')('test');
-  const result = await module.__get__('parse')(dom, {
+  const dom = await lib.__get__('fetchDOM')('test');
+  const result = await lib.__get__('parse')(dom, {
     trimLine: true,
     color: true,
   });
