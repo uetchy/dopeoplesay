@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import {JSDOM} from 'jsdom';
+import { JSDOM } from 'jsdom';
 import fetch from 'node-fetch';
 
 export interface DictionaryItem {
@@ -34,16 +34,16 @@ async function fetchDOM(queryString: string): Promise<JSDOM> {
 
 function parse(
   dom: JSDOM,
-  {trim, color}: {trim: boolean; color: boolean},
+  { trim, color }: { trim: boolean; color: boolean }
 ): Response {
-  const {document} = dom.window;
+  const { document } = dom.window;
   const matchedCounter = document.querySelector('.match-counter > span');
   if (!matchedCounter) {
     throw new Error('No search result found');
   }
   // Dictionary
   const definitions = Array.from(
-    document.querySelectorAll<HTMLDivElement>('#dictionary > div > .term'),
+    document.querySelectorAll<HTMLDivElement>('#dictionary > div > .term')
   ).map(
     (item: HTMLDivElement): DictionaryItem => {
       const label =
@@ -52,7 +52,7 @@ function parse(
       const pos = posElem ? posElem.textContent!.replace(/[()]/g, '') : '';
       // tslint:disable-next-line: no-shadowed-variable
       const definitions = Array.from(item.querySelectorAll('li')).map(
-        (def): string => def.textContent || '',
+        (def): string => def.textContent || ''
       );
       const source = item.querySelector('small > i > a')!.textContent || '';
       return {
@@ -61,30 +61,30 @@ function parse(
         pos,
         source,
       };
-    },
+    }
   );
   // Collocations
   const collocations = Array.from(
-    document.querySelectorAll('.hits > div > p.mb-4'),
+    document.querySelectorAll('.hits > div > p.mb-4')
   ).map((item): string => {
     let matchedContent = item.querySelector('.match-content')!.innerHTML;
     if (trim) {
       matchedContent = matchedContent.match(
-        /((?:[^\s]+[,.]?\s?){0,4}<.+>(?:[,.]?\s?[^\s]+){0,4})/m,
+        /((?:[^\s]+[,.]?\s?){0,4}<.+>(?:[,.]?\s?[^\s]+){0,4})/m
       )![0];
     }
     const highlightedText = matchedContent.replace(
       /<em.+?>(.+?)<\/em>/g,
-      color ? chalk.yellow.bold('$1') : '$1',
+      color ? chalk.yellow.bold('$1') : '$1'
     );
     return highlightedText;
   });
-  return {definitions, collocations};
+  return { definitions, collocations };
 }
 
 export async function search(
   query: string,
-  {trim = true, color = true}: SearchOptions = {},
+  { trim = true, color = true }: SearchOptions = {}
 ) {
   try {
     const dom = await fetchDOM(query);
@@ -96,7 +96,7 @@ export async function search(
     switch (err.code) {
       case 'ENOTFOUND':
         throw new Error(
-          'Your request has been failed maybe due to network lost. Try it again.',
+          'Your request has been failed maybe due to network lost. Try it again.'
         );
       default:
         throw err;

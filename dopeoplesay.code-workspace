@@ -1,17 +1,26 @@
 {
   "folders": [
     {
-      "name": "root",
+      "name": "✨ dopeoplesay",
       "path": "."
     },
     {
-      "path": "packages/dopeoplesay-cli"
+      "name": "📦 dopeoplesay",
+      "path": "packages/dopeoplesay"
     },
     {
-      "path": "packages/dopeoplesay"
+      "name": "📦 dopeoplesay-cli",
+      "path": "packages/dopeoplesay-cli"
     }
   ],
   "settings": {
-    "jest.disabledWorkspaceFolders": ["root", "dopeoplesay-cli"]
+    "jest.disabledWorkspaceFolders": [
+      "root",
+      "dopeoplesay-cli"
+    ],
+    "cSpell.words": [
+      "dopeoplesay",
+      "dpsi"
+    ]
   }
 }

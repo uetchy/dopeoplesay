@@ -3,8 +3,8 @@
 import chalk from 'chalk';
 import ora from 'ora';
 import yargs from 'yargs';
-import {consoleJSON, head, hr, info} from './lib';
-import {search, makeURL} from 'dopeoplesay';
+import { consoleJSON, head, hr, info } from './lib';
+import { search, makeURL } from 'dopeoplesay';
 
 const spinner = ora();
 
@@ -30,14 +30,14 @@ async function main(args: Args): Promise<void> {
     spinner.start();
   }
 
-  const {definitions, collocations} = await search(query, {
+  const { definitions, collocations } = await search(query, {
     color: !jsonOutputMode,
     trim: trimLineMode,
   }).catch((err) => {
     switch (err.code) {
       case 'ENOTFOUND':
         throw new Error(
-          'Your request has been failed maybe due to network lost. Try it again.',
+          'Your request has been failed maybe due to network lost. Try it again.'
         );
       default:
         throw new Error(err.message);
@@ -45,7 +45,7 @@ async function main(args: Args): Promise<void> {
   });
 
   if (jsonOutputMode) {
-    return consoleJSON({definitions, collocations});
+    return consoleJSON({ definitions, collocations });
   }
 
   spinner.succeed();
@@ -60,8 +60,8 @@ async function main(args: Args): Promise<void> {
         chalk.red(
           `${chalk.underline(term.label!)}${
             term.pos ? ' (' + term.pos + ')' : ''
-          } from ${term.source}`,
-        ),
+          } from ${term.source}`
+        )
       );
       for (const def of term.definitions) {
         // eslint-disable-next-line no-console
@@ -82,16 +82,16 @@ async function main(args: Args): Promise<void> {
 
 function errorHandler(error: string, jsonOutput: boolean): void {
   if (jsonOutput) {
-    consoleJSON({error});
+    consoleJSON({ error });
   } else {
     spinner.fail(error);
   }
 }
 
 const argv: Args = yargs
-  .option('$0', {required: true, demandOption: true})
-  .option('json', {alias: 'j', boolean: true, default: false})
-  .option('trim', {alias: 't', boolean: true, default: true})
+  .option('$0', { required: true, demandOption: true })
+  .option('json', { alias: 'j', boolean: true, default: false })
+  .option('trim', { alias: 't', boolean: true, default: true })
   .demandOption(['$0'])
   .help()
   .fail((msg, err): void => errorHandler(msg || err.message, argv.json)).argv;

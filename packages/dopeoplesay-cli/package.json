@@ -8,9 +8,18 @@
     "dev": "tsc -w",
     "test": "echo no test"
   },
+  "bin": {
+    "dps": "lib/cli.js",
+    "dpsi": "lib/cli.js",
+    "dopeoplesay": "lib/cli.js"
+  },
+  "files": [
+    "lib/*.js"
+  ],
   "dependencies": {
     "chalk": "^3.0.0",
     "dopeoplesay": "^3.0.0",
+    "epicfail": "^0.2.0",
     "ora": "^4.0.3",
     "yargs": "^15.3.1"
   },
@@ -23,23 +32,15 @@
     "ts-node": "^8.7.0",
     "typescript": "^3.8.3"
   },
-  "files": [
-    "lib/*.js"
-  ],
+  "homepage": "https://github.com/uetchy/dopeoplesay",
   "repository": {
     "url": "https://github.com/uetchy/dopeoplesay.git",
     "type": "git"
   },
-  "license": "MIT",
-  "bin": {
-    "dps": "lib/cli.js",
-    "dpsi": "lib/cli.js",
-    "dopeoplesay": "lib/cli.js"
-  },
   "bugs": {
     "url": "https://github.com/uetchy/dopeoplesay/issues"
   },
-  "homepage": "https://github.com/uetchy/dopeoplesay",
+  "license": "MIT",
   "keywords": [
     "dopeoplesay",
     "dpsi"

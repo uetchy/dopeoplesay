@@ -9,6 +9,13 @@
     "dev": "tsc -w",
     "test": "npm run build && jest"
   },
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*.js",
+    "lib/*.d.ts",
+    "lib/*.js.map"
+  ],
   "dependencies": {
     "chalk": "^4.0.0",
     "jsdom": "^16.2.2",
@@ -29,28 +36,21 @@
     "ts-node": "^8.10.2",
     "typescript": "^3.9.3"
   },
-  "types": "lib/index.d.ts",
-  "main": "lib/index.js",
-  "files": [
-    "lib/*.js",
-    "lib/*.d.ts",
-    "lib/*.js.map"
-  ],
-  "repository": {
-    "url": "https://github.com/uetchy/dopeoplesay.git",
-    "type": "git"
-  },
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
       "git add"
     ]
   },
-  "license": "MIT",
+  "homepage": "https://github.com/uetchy/dopeoplesay",
+  "repository": {
+    "url": "https://github.com/uetchy/dopeoplesay.git",
+    "type": "git"
+  },
   "bugs": {
     "url": "https://github.com/uetchy/dopeoplesay/issues"
   },
-  "homepage": "https://github.com/uetchy/dopeoplesay",
+  "license": "MIT",
   "keywords": [
     "collocation",
     "dopeoplesay",

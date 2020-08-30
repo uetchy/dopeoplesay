@@ -1,5 +1,5 @@
 import nock from 'nock';
-import {resolve} from 'path';
+import { resolve } from 'path';
 
 export default function declareMockScope(): () => void {
   nock.disableNetConnect();
