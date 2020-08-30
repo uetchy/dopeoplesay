@@ -5,13 +5,34 @@
 
 Node.js bindings and a command-line app for [Do People Say it](https://dopeoplesay.com).
 
-<!-- START pkgtoc, keep to allow update -->
+<!-- START mdmod { use: 'top' } -->
 
-**Packages**
+### [dopeoplesay-cli](packages/dopeoplesay-cli)
 
-| Version                                                                                                          | Package                                                                                            |
-| :--------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
-| [![dopeoplesay npm badge)](https://img.shields.io/npm/v/dopeoplesay.svg)](https://npmjs.com/package/dopeoplesay) | **[dopeoplesay](packages/dopeoplesay/)**<br />Node.js wrapper for dopeoplesay.com                  |
-| ![dopeoplesay-cli npm badge)](https://img.shields.io/npm/v/dopeoplesay-cli.svg)                                  | **[dopeoplesay-cli](packages/dopeoplesay-cli/)**<br />Command-line interface for Do People Say it. |
+Command-line interface for Do People Say it.
 
-<!-- END pkgtoc, keep to allow update -->
+[![](https://img.shields.io/npm/v/dopeoplesay-cli.svg)](https://npmjs.com/package/dopeoplesay-cli)
+[![npm: total downloads](https://flat.badgen.net/npm/dt/dopeoplesay-cli)](https://npmjs.com/package/dopeoplesay-cli)
+![npm: license](https://flat.badgen.net/npm/license/dopeoplesay-cli)
+
+```bash
+npm install --save dopeoplesay-cli
+# or
+yarn add dopeoplesay-cli
+```
+
+### [dopeoplesay](packages/dopeoplesay)
+
+Node.js wrapper for dopeoplesay.com
+
+[![](https://img.shields.io/npm/v/dopeoplesay.svg)](https://npmjs.com/package/dopeoplesay)
+[![npm: total downloads](https://flat.badgen.net/npm/dt/dopeoplesay)](https://npmjs.com/package/dopeoplesay)
+![npm: license](https://flat.badgen.net/npm/license/dopeoplesay)
+
+```bash
+npm install --save dopeoplesay
+# or
+yarn add dopeoplesay
+```
+
+<!-- END mdmod -->

@@ -5,6 +5,7 @@
     "bump": "lerna version --conventional-commits",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dev": "lerna run dev",
+    "md": "mdmod",
     "ship": "lerna publish from-package",
     "test": "lerna run test"
   },
@@ -13,15 +14,24 @@
     "@commitlint/config-conventional": "^8.3.4",
     "husky": "^4.2.5",
     "lerna": "^3.22.0",
+    "lint-staged": "^10.2.13",
+    "mdmod": "^0.4.0",
+    "mdmod-plugin-top": "^0.1.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
   },
   "husky": {
     "hooks": {
       "pre-push": "npm test",
-      "pre-commit": "pretty-quick --staged",
+      "pre-commit": "lint-staged && pretty-quick --staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.md": [
+      "mdmod",
+      "git add"
+    ]
   },
   "private": true,
   "workspaces": [
