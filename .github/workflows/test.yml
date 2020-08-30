@@ -33,5 +33,6 @@ jobs:
         run: yarn test
 
       - name: Upload coverage
-        if: ${{ github.event_name != 'pull_request' }}
-        run: yarn coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

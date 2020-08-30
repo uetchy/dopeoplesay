@@ -3,7 +3,6 @@
   "scripts": {
     "build": "lerna run build",
     "bump": "lerna version --conventional-commits",
-    "coverage": "lerna run coverage",
     "dev": "lerna run dev",
     "md": "mdmod",
     "ship": "lerna publish from-package",

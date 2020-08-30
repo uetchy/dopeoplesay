@@ -5,9 +5,8 @@
   "author": "Yasuaki Uechi <y@uechi.io> (https://uechi.io/)",
   "scripts": {
     "build": "shx rm -rf lib && tsc",
-    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "dev": "tsc -w",
-    "test": "npm run build && jest"
+    "test": "npm run build && jest --coverage"
   },
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
