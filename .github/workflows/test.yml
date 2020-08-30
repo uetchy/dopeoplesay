@@ -34,6 +34,4 @@ jobs:
 
       - name: Upload coverage
         if: ${{ github.event_name != 'pull_request' }}
-        run: cat ./coverage/lcov.info | yarn codacy-coverage
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        run: yarn coverage

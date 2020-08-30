@@ -45,7 +45,8 @@
   "homepage": "https://github.com/uetchy/dopeoplesay",
   "repository": {
     "url": "https://github.com/uetchy/dopeoplesay.git",
-    "type": "git"
+    "type": "git",
+    "directory": "packages/dopeoplesay"
   },
   "bugs": {
     "url": "https://github.com/uetchy/dopeoplesay/issues"

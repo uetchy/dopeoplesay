@@ -3,7 +3,7 @@
   "scripts": {
     "build": "lerna run build",
     "bump": "lerna version --conventional-commits",
-    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "coverage": "lerna run coverage",
     "dev": "lerna run dev",
     "md": "mdmod",
     "ship": "lerna publish from-package",
